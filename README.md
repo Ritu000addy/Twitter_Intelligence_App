@@ -155,21 +155,21 @@ Installation:
 python -m backend.collect_data
 ```
 - Run claim analysis:
-
+```bash
 python -m scripts.run_analysis
-
+```
 - Group claims:
-
+```bash
 python -m backend.intelligence.claim_grouping
-
+```
 - Generate PDF reports:
-
+```bash
 python -m backend.intelligence.report_generator
-
+```
 - Launch dashboard locally:
-
+```bash
 streamlit run dashboard/app.py
-
+```
 
 8. Data Collection Method
 
