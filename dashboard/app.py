@@ -1,4 +1,6 @@
 import sys
+import os
+import streamlit as st
 import hmac
 from pathlib import Path
 
@@ -11,9 +13,21 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from backend.database import DB_NAME
+# Load Streamlit Cloud secrets into environment variables
+for key in ["SOCIALCRAWL_API_KEY", "GEMINI_API_KEY"]:
+    try:
+        if key in st.secrets:
+            os.environ[key] = str(st.secrets[key])
+    except Exception:
+        pass
+
+from backend.database import DB_NAME, get_posts
 from backend.intelligence.duplicate_detector import detect_group_duplicates
 from backend.intelligence.report_generator import generate_pdf_report
+
+from backend.collect_data import collect_new_topic
+from backend.intelligence.claim_extractor import analyze_post
+from backend.intelligence.claim_grouping import group_claims
 
 
 st.set_page_config(
@@ -45,6 +59,85 @@ if not st.session_state.authenticated:
 
 st.title("Twitter Intelligence Dashboard")
 st.caption("Cross-language social media claim monitoring")
+
+st.divider()
+st.subheader("Collect a New Topic")
+
+with st.form("collect_topic_form"):
+    new_topic = st.text_input(
+        "Topic Name",
+        placeholder="e.g. Electric Vehicles"
+    )
+
+    search_query = st.text_area(
+        "X Search Query",
+        placeholder="Enter keywords or an X search query"
+    )
+
+    max_posts = st.number_input(
+        "Maximum Posts",
+        min_value=10,
+        max_value=100,
+        value=100,
+        step=10
+    )
+
+    collect_submitted = st.form_submit_button("Collect Posts")
+
+if collect_submitted:
+    if not new_topic.strip() or not search_query.strip():
+        st.error("Please enter both a topic name and search query.")
+    else:
+        try:
+            with st.spinner("Collecting posts from X..."):
+                results = collect_new_topic(
+                    new_topic,
+                    [search_query],
+                    int(max_posts)
+                )
+
+            for result in results:
+                st.success(
+                    f"Collection completed: {result['saved']} new posts saved. "
+                    f"Total posts for this topic: {result['total']}."
+                )
+
+            st.rerun()
+
+        except Exception as e:
+            st.error(f"Collection failed: {e}")
+
+st.divider()
+
+st.subheader("Analyze New Posts")
+
+if st.button("Run Claim Analysis"):
+    try:
+        new_posts = get_posts()
+
+        analyzed_count = 0
+
+        with st.spinner("Analyzing posts with Gemini..."):
+            for post in new_posts:
+                result = analyze_post(
+                    post["text"],
+                    post["topic"],
+                    post_id=post["post_id"]
+                )
+
+                if "error" not in result:
+                    analyzed_count += 1
+
+        st.success(f"Analysis completed. Successfully analyzed: {analyzed_count} posts.")
+
+        with st.spinner("Grouping related claims..."):
+            group_claims()
+
+        st.success("Claim grouping completed.")
+        st.rerun()
+
+    except Exception as e:
+        st.error(f"Analysis failed: {e}")
 
 conn = sqlite3.connect(DB_NAME)
 

@@ -30,15 +30,19 @@ TOPICS = {
 
 def collect_posts(topic, query, max_items=100):
     if not API_KEY:
-        print("SOCIALCRAWL_API_KEY missing in .env")
-        return
+        raise ValueError("SOCIALCRAWL_API_KEY missing in environment.")
 
     existing_count = len(get_posts(topic))
     remaining = max(0, max_items - existing_count)
 
     if remaining == 0:
-        print(f"{topic}: already has 100 posts.")
-        return
+        return {
+            "topic": topic,
+            "received": 0,
+            "saved": 0,
+            "total": existing_count,
+            "message": "Collection limit already reached."
+        }
 
     response = requests.get(
         API_URL,
@@ -51,8 +55,7 @@ def collect_posts(topic, query, max_items=100):
     result = response.json()
 
     if not result.get("success"):
-        print(result)
-        return
+        raise RuntimeError(f"SocialCrawl API error: {result}")
 
     items = result.get("data", {}).get("items", [])
     inserted = 0
@@ -87,9 +90,44 @@ def collect_posts(topic, query, max_items=100):
 
         inserted += save_post(record)
 
-    print(f"Received: {len(items)} | Newly saved: {inserted}")
-    print(f"Topic total: {len(get_posts(topic))}/100")
-    print("Credits remaining:", result.get("credits_remaining"))
+    total = len(get_posts(topic))
+
+    return {
+        "topic": topic,
+        "received": len(items),
+        "saved": inserted,
+        "total": total,
+        "credits_remaining": result.get("credits_remaining"),
+        "message": "Collection completed."
+    }
+
+
+def collect_new_topic(topic, queries, max_items=100):
+    initialize_database()
+
+    topic = topic.strip()
+
+    if not topic:
+        raise ValueError("Topic name cannot be empty.")
+
+    if not queries:
+        raise ValueError("At least one search query is required.")
+
+    results = []
+
+    for query in queries:
+        query = query.strip()
+
+        if not query:
+            continue
+
+        result = collect_posts(topic, query, max_items)
+        results.append(result)
+
+        if result["total"] >= max_items:
+            break
+
+    return results
 
     
 if __name__ == "__main__":
@@ -105,4 +143,4 @@ if __name__ == "__main__":
         custom_query = input("Enter X search query/keywords: ").strip()
 
         if custom_query:
-            collect_posts(custom_topic, custom_query, max_items=100)
+            print(collect_new_topic(custom_topic, [custom_query]))
