@@ -20,23 +20,23 @@ Supports three predefined topics:
 * UPI Charges
 * EVM and Voting
 
-** Supports custom topic collection through user-provided search queries.
-Stores post text, author, date, URL, language and engagement counts.
-Uses post IDs and SQLite uniqueness constraints to prevent duplicate records.
+a. Supports custom topic collection through user-provided search queries.
+b. Stores post text, author, date, URL, language and engagement counts.
+c. Uses post IDs and SQLite uniqueness constraints to prevent duplicate records.
 
 
 AI-Powered Claim Intelligence: 
 
-Extracts factual claims using Google Gemini (gemini-3.5-flash-lite)
-Normalises Hindi and Hinglish claims into English for cross-language comparison.
-Classifies stance as supports, denies, neutral or unclear.
-Analyses sentiment, risk level and named entities.
+a. Extracts factual claims using Google Gemini (gemini-3.5-flash-lite)
+b. Normalises Hindi and Hinglish claims into English for cross-language comparison.
+c. Classifies stance as supports, denies, neutral or unclear.
+d. Analyses sentiment, risk level and named entities.
 Validates evidence quotes against the original post.
-Groups semantically similar claims using multilingual sentence embeddings.
-Generates English claim titles and summaries.
-Tracks claim spread, authors, languages and engagement.
-Detects near-identical posts as potential coordination signals, not proof.
-Uses cached analysis results to avoid unnecessary repeated LLM calls.
+e. Groups semantically similar claims using multilingual sentence embeddings.
+f. Generates English claim titles and summaries.
+g. Tracks claim spread, authors, languages and engagement.
+h. Detects near-identical posts as potential coordination signals, not proof.
+i. Uses cached analysis results to avoid unnecessary repeated LLM calls.
 
 
 Dashboard: 
