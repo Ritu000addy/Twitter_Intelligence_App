@@ -112,27 +112,9 @@ flowchart TD
     M --> N
 ```
 
-
-SocialCrawl API
-      v
-Data Collection Module
-      v
-SQLite Database
-      v
-LLM Claim Extraction
-      v
-Multilingual Embeddings
-      v
-Semantic Claim Grouping
-      v
-Group Analysis and Duplicate Detection
-      +------------------+
-      v                  v
-Streamlit Dashboard   PDF Reports
-
-
 5. Project Structure
 
+```text
 Twitter_Intelligence_App/
 |
 |-- backend/
@@ -158,7 +140,7 @@ Twitter_Intelligence_App/
 |-- assets/
 |-- requirements.txt
 |-- README.md
-
+```
 
 6. Local Setup
 
