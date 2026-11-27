@@ -21,6 +21,9 @@ if API_KEY:
 def analyze_post(text, topic=None, post_id=None):
   text_hash = hashlib.sha256(text.encode("utf-8")).hexdigest()
 
+  if client is None:
+    raise ValueError("GEMINI_API_KEY is not configured.")
+
   cached = get_cached_analysis(
         post_id, text_hash
     ) if post_id else None
