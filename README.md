@@ -20,9 +20,9 @@ Supports three predefined topics:
 * UPI Charges
 * EVM and Voting
 
-a. Supports custom topic collection through user-provided search queries.
-b. Stores post text, author, date, URL, language and engagement counts.
-c. Uses post IDs and SQLite uniqueness constraints to prevent duplicate records.
+- Supports custom topic collection through user-provided search queries.
+- Stores post text, author, date, URL, language and engagement counts.
+- Uses post IDs and SQLite uniqueness constraints to prevent duplicate records.
 
 
 AI-Powered Claim Intelligence: 
