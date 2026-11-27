@@ -18,7 +18,10 @@ MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 THRESHOLD = 0.80
 
 load_dotenv()
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+API_KEY = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=API_KEY) if API_KEY else None
+
 MODEL = "gemini-3.5-flash-lite"
 
 def load_analyzed_posts():
@@ -197,6 +200,13 @@ def group_claims():
 
 
 def generate_group_summary(group):
+    if client is None:
+        title = group[0].get("main_claim", "Related claims")[:100]
+        summary = (
+            "Automatic summary unavailable because Gemini API key "
+            "is not configured."
+        )
+        return title, summary
     claims = [
         {
             "claim": post["main_claim"],
