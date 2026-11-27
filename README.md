@@ -16,9 +16,9 @@ Data Collection:
 
 Collects public X posts using the SocialCrawl API.
 Supports three predefined topics:
-* E20 Petrol
-* UPI Charges
-* EVM and Voting
+**E20 Petrol**
+**UPI Charges**
+**EVM and Voting**
 
 - Supports custom topic collection through user-provided search queries.
 - Stores post text, author, date, URL, language and engagement counts.
