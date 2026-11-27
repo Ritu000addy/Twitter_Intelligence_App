@@ -151,69 +151,75 @@ Installation:
 7. Running the Application
 
 - Collect posts:
+
 python -m backend.collect_data
 
 - Run claim analysis:
+
 python -m scripts.run_analysis
 
-Group claims:
+- Group claims:
+
 python -m backend.intelligence.claim_grouping
 
-Generate PDF reports:
+- Generate PDF reports:
+
 python -m backend.intelligence.report_generator
 
-Launch dashboard locally:
+- Launch dashboard locally:
+
 streamlit run dashboard/app.py
 
 
 8. Data Collection Method
 
-The application uses keyword-based X search queries through SocialCrawl.
-Search queries target relevant English, Hindi and Hinglish discussions. Retrieved posts are stored in SQLite. Duplicate post IDs are ignored during subsequent collection runs.
-The application initially collected:
+- The application uses keyword-based X search queries through SocialCrawl.
+- Search queries target relevant English, Hindi and Hinglish discussions. Retrieved posts are stored in SQLite. Duplicate post IDs are ignored during subsequent collection runs.
+- The application initially collected:
 
-Topic               |              Unique Posts
-E20 Petrol          |                   101
-UPI Charges         |                   116
-EVM and Voting      |                   118
-Total               |                   335
+| Topic |  Unique Posts |
+|---|---|
+| E20 Petrol  | 101 |
+| UPI Charges   | 116 |
+| EVM and Voting    | 118 |
+| Total  | 335 |
 
-An additional custom-topic collection test was performed for Electric Vehicles.
+- An additional custom-topic collection test was performed for Electric Vehicles.
 
 
 9. Accuracy and Validation
 
-Verified collection counts and duplicate prevention.
-Tested English, Hindi and Hinglish claim extraction.
-Compared representative cross-language claim matches.
-Checked unrelated claim examples for separation.
-Tested supporting and denying stance classification.
-Validated evidence quotes against original post text.
-Tested invalid LLM output handling.
-Verified analysis caching.
-Ran an adversarial prompt-injection test successfully.
-Tested claim group timelines and duplicate detection.
-Generated and inspected topic-specific PDF reports.
-Tested the deployed dashboard, login and PDF downloads.
+- Verified collection counts and duplicate prevention.
+- Tested English, Hindi and Hinglish claim extraction.
+- Compared representative cross-language claim matches.
+- Checked unrelated claim examples for separation.
+- Tested supporting and denying stance classification.
+- Validated evidence quotes against original post text.
+- Tested invalid LLM output handling.
+- Verified analysis caching.
+- Ran an adversarial prompt-injection test successfully.
+- Tested claim group timelines and duplicate detection.
+- Generated and inspected topic-specific PDF reports.
+- Tested the deployed dashboard, login and PDF downloads.
 
 
 10. Limitations
 
-Collection coverage depends on API availability, search keywords and platform access.
-Search results do not represent every public post on X.
-LLM extraction, stance classification and risk assessment may contain errors.
-Semantic similarity can occasionally group unrelated claims or separate related claims.
-Claim grouping and summaries are automated and require human review.
-Potential coordination signals do not establish coordinated behaviour.
-The application does not independently determine whether claims are true or false.
-Gemini service availability and rate limits may affect automated summaries.
-New-topic collection depends on appropriate search queries.
+- Collection coverage depends on API availability, search keywords and platform access.
+- Search results do not represent every public post on X.
+- LLM extraction, stance classification and risk assessment may contain errors.
+- Semantic similarity can occasionally group unrelated claims or separate related claims.
+- Claim grouping and summaries are automated and require human review.
+- Potential coordination signals do not establish coordinated behaviour.
+- The application does not independently determine whether claims are true or false.
+- Gemini service availability and rate limits may affect automated summaries.
+- New-topic collection depends on appropriate search queries.
 
 
 11. Responsible Use
 
 This application is designed for social media claim monitoring and research. Its outputs are indicators for further investigation, not verified facts. Human verification and independent evidence are necessary before drawing conclusions.
 
-Project: Twitter/X Intelligence Platform
-Purpose: Multilingual claim monitoring and intelligence reporting
-Interface: Streamlit Web Application
+- Project: Twitter/X Intelligence Platform
+- Purpose: Multilingual claim monitoring and intelligence reporting
+- Interface: Streamlit Web Application
