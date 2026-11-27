@@ -16,6 +16,7 @@ Data Collection:
 
 Collects public X posts using the SocialCrawl API.
 Supports three predefined topics:
+
 **E20 Petrol**
 
 **UPI Charges**
@@ -31,40 +32,37 @@ AI-Powered Claim Intelligence:
 
 - Extracts factual claims using Google Gemini (gemini-3.5-flash-lite)
 - Normalises Hindi and Hinglish claims into English for cross-language comparison.
-c. Classifies stance as supports, denies, neutral or unclear.
-
-d. Analyses sentiment, risk level and named entities.
+- Classifies stance as supports, denies, neutral or unclear.
+- Analyses sentiment, risk level and named entities.
 Validates evidence quotes against the original post.
-
-e. Groups semantically similar claims using multilingual sentence embeddings.
-
-f. Generates English claim titles and summaries.
-g. Tracks claim spread, authors, languages and engagement.
-h. Detects near-identical posts as potential coordination signals, not proof.
-i. Uses cached analysis results to avoid unnecessary repeated LLM calls.
+- Groups semantically similar claims using multilingual sentence embeddings.
+- Generates English claim titles and summaries.
+- Tracks claim spread, authors, languages and engagement.
+- Detects near-identical posts as potential coordination signals, not proof.
+- Uses cached analysis results to avoid unnecessary repeated LLM calls.
 
 
 Dashboard: 
 
-Topic filtering and post search.
-Summary metrics and charts.
-Claim group details and risk explanations.
-Supporting and denying posts.
-Claim spread timelines.
-Potential duplicate/coordinated post detection.
-High-risk posts and searchable post records.
+- Topic filtering and post search.
+- Summary metrics and charts.
+- Claim group details and risk explanations.
+- Supporting and denying posts.
+- Claim spread timelines.
+- Potential duplicate/coordinated post detection.
+- High-risk posts and searchable post records.
 
 
 PDF Reports:
 
-Executive summary
-Top claims and source posts
-Claim group analysis
-Claim spread charts
-Supporting and denying post counts
-High-risk posts
-Limitations
-Hindi font rendering support
+- Executive summary
+- Top claims and source posts
+- Claim group analysis
+- Claim spread charts
+- Supporting and denying post counts
+- High-risk posts
+- Limitations
+- Hindi font rendering support
 
 
 3. Technology Stack
