@@ -151,9 +151,9 @@ Installation:
 7. Running the Application
 
 - Collect posts:
-
+```bash
 python -m backend.collect_data
-
+```
 - Run claim analysis:
 
 python -m scripts.run_analysis
