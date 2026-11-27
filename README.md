@@ -135,25 +135,25 @@ Twitter_Intelligence_App/
 
 Requirements: 
 
-Python 3.12
-Git
-SocialCrawl API key
-Google Gemini API key
+- Python 3.12
+- Git
+- SocialCrawl API key
+- Google Gemini API key
 
 Installation:
 
-Create a virtual environment
-Windows activation of venv
-Install dependencies
-Create .env file in the project root
+- Create a virtual environment
+- Windows activation of venv
+- Install dependencies
+- Create .env file in the project root
 
 
 7. Running the Application
 
-Collect posts:
+- Collect posts:
 python -m backend.collect_data
 
-Run claim analysis:
+- Run claim analysis:
 python -m scripts.run_analysis
 
 Group claims:
