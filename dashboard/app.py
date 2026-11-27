@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 import streamlit as st
 import hmac
 from pathlib import Path
@@ -119,6 +120,7 @@ if st.button("Run Claim Analysis"):
 
         with st.spinner("Analyzing posts with Gemini..."):
             for post in new_posts:
+                time.sleep(5)
                 result = analyze_post(
                     post["text"],
                     post["topic"],
