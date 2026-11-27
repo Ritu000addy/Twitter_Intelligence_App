@@ -87,25 +87,30 @@ PDF Reports:
 
 4. Architecture
 
+
 ```mermaid
 flowchart TD
-A["Public X / Twitter Posts"] --> B["SocialCrawl API"]
-    B --> C["Data Collection Module"]
-    C --> D[("SQLite Database")]
+    A["Public X Twitter Posts"] --> B["SocialCrawl API"]
+    B --> C["Data Collection"]
+    C --> D["SQLite Database"]
 
-    D --> E["Claim Extraction - Gemini"]
+    D --> E["Gemini Claim Extraction"]
     E --> F["Claim Classification"]
     F --> G["Multilingual Embeddings"]
     G --> H["Semantic Claim Grouping"]
 
     H --> I["Group Analysis"]
-    I --> J["Risk and Duplicate Detection"]
+    I --> J["Risk Analysis"]
+    I --> K["Duplicate Detection"]
 
-    J --> K["Streamlit Dashboard"]
-    J --> L["PDF Report Generator"]
+    J --> L["Streamlit Dashboard"]
+    K --> L
 
-    K --> M["Human Review"]
-    L --> M
+    I --> M["PDF Report Generator"]
+
+    L --> N["Human Review"]
+    M --> N
+```
 
 
 SocialCrawl API
