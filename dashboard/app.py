@@ -1,4 +1,5 @@
 import sys
+import hmac
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +21,27 @@ st.set_page_config(
     page_icon="🔎",
     layout="wide"
 )
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.title("Twitter Intelligence - Login")
+
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        if (
+            hmac.compare_digest(username, st.secrets["APP_USERNAME"])
+            and hmac.compare_digest(password, st.secrets["APP_PASSWORD"])
+        ):
+            st.session_state.authenticated = True
+            st.rerun()
+        else:
+            st.error("Invalid username or password.")
+
+    st.stop()
 
 st.title("Twitter Intelligence Dashboard")
 st.caption("Cross-language social media claim monitoring")
