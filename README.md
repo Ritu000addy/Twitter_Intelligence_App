@@ -67,6 +67,11 @@ PDF Reports:
 
 3. Technology Stack
 
+| Component | Technology |
+|---|---|
+| Programming language | Python |
+| Data collection | SocialCrawl API |
+
 Component                   |               Technology
 Programming language        |                 Python
 Data collection             |              SocialCrawl API
