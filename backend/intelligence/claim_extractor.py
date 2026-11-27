@@ -11,11 +11,11 @@ from backend.database import get_cached_analysis, save_analysis
 load_dotenv()
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-if not API_KEY:
-    raise ValueError("GEMINI_API_KEY not found in .env")
-
-client = genai.Client(api_key=API_KEY)
+client = None
 MODEL = "gemini-3.5-flash-lite"
+
+if API_KEY:
+    client = genai.Client(api_key=API_KEY)
 
 
 def analyze_post(text, topic=None, post_id=None):
