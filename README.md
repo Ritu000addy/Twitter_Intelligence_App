@@ -6,8 +6,8 @@ A multilingual social media intelligence application that collects public X post
 1. Live Application - 
 
 Live app: twitterintelligenceapp-kjjhhwketgzg9uwwfxzinn.streamlit.app
-Username: username
-Password: password
+* Username: username
+* Password: password
 
 
 2. Features - 
@@ -19,7 +19,8 @@ Supports three predefined topics:
 * E20 Petrol
 * UPI Charges
 * EVM and Voting
-Supports custom topic collection through user-provided search queries.
+
+** Supports custom topic collection through user-provided search queries.
 Stores post text, author, date, URL, language and engagement counts.
 Uses post IDs and SQLite uniqueness constraints to prevent duplicate records.
 
