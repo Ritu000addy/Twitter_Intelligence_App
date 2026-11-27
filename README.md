@@ -5,7 +5,8 @@ A multilingual social media intelligence application that collects public X post
 
 1. Live Application - 
 
-Live app: twitterintelligenceapp-kjjhhwketgzg9uwwfxzinn.streamlit.app
+[Live app](twitterintelligenceapp-kjjhhwketgzg9uwwfxzinn.streamlit.app)
+
 * Username: username
 * Password: password
 
