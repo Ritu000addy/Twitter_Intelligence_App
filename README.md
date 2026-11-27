@@ -7,6 +7,8 @@ A multilingual social media intelligence application that collects public X post
 
 [Live app](twitterintelligenceapp-kjjhhwketgzg9uwwfxzinn.streamlit.app)
 
+twitterintelligenceapp-kjjhhwketgzg9uwwfxzinn.streamlit.app
+
 * Username: username
 * Password: password
 
@@ -84,6 +86,27 @@ PDF Reports:
 
 
 4. Architecture
+
+```mermaid
+flowchart TD
+A["Public X / Twitter Posts"] --> B["SocialCrawl API"]
+    B --> C["Data Collection Module"]
+    C --> D[("SQLite Database")]
+
+    D --> E["Claim Extraction - Gemini"]
+    E --> F["Claim Classification"]
+    F --> G["Multilingual Embeddings"]
+    G --> H["Semantic Claim Grouping"]
+
+    H --> I["Group Analysis"]
+    I --> J["Risk and Duplicate Detection"]
+
+    J --> K["Streamlit Dashboard"]
+    J --> L["PDF Report Generator"]
+
+    K --> M["Human Review"]
+    L --> M
+
 
 SocialCrawl API
       v
