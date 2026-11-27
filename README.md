@@ -71,19 +71,15 @@ PDF Reports:
 |---|---|
 | Programming language | Python |
 | Data collection | SocialCrawl API |
-
-Component                   |               Technology
-Programming language        |                 Python
-Data collection             |              SocialCrawl API
-LLM                         |               Google Gemini
-Embeddings                  |           Sentence Transformers
-Claim similarity            |               Scikit-learn
-Database                    |                 SQLite
-Dashboard                   |               Streamlit
-Charts                      |           Plotly, Matplotlib
-PDF generation              |               ReportLab
-Hosting                     |           Streamlit Community Cloud
-Authentication              |               Streamlit Secrets
+| LLM |  Google Gemini |
+| Embeddings  | Sentence Transformers |
+| Claim similarity   | Scikit-learn |
+| Database  | SQLite |
+| Dashboard  | Streamlit |
+| Charts  | Plotly, Matplotlib |
+| PDF generation  | ReportLab |
+| Hosting  | Streamlit Community Cloud |
+| Authentication  | Streamlit Secrets |
 
 
 4. Architecture
